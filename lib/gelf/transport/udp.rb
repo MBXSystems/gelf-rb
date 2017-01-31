@@ -16,12 +16,12 @@ module GELF
         datagrams.each do |datagram|
           socket.send(datagram, 0, host, port)
         end
+      rescue IOError
       end
 
       def close
         socket = get_socket
         socket.close if socket
-        Thread.current[:gelf_udp_socket] = nil
       end
 
       private
