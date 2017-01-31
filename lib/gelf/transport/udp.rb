@@ -21,6 +21,7 @@ module GELF
       def close
         socket = get_socket
         socket.close if socket
+        Thread.current[:gelf_udp_socket] = nil
       end
 
       private
